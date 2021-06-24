@@ -10,7 +10,7 @@ Clone the git repository by running the following in a local jupyter notebook (P
 ```
 
 ### Creating the ECR repository
-We need to create an ECR to store our Docker image.
+We need to create an ECR to store our Docker image, use the AWS CLI
 ```
 REGION=<aws-region>
 REPOSITORY=<repository-name>
