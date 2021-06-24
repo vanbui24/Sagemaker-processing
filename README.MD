@@ -6,7 +6,7 @@ This example creates a custom image for ScriptProcessor from sagemaker.processin
 
 Clone the git repository by running the following in a local jupyter notebook (Python 3)
 ```
-!git clone https://github.com/vanbui24/flowty-sagemaker 
+!git clone https://github.com/vanbui24/Sagemaker-processing.git
 ```
 
 ### Creating the ECR repository
