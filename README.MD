@@ -4,8 +4,13 @@
 
 This example creates a custom image for ScriptProcessor from sagemaker.processing
 
+Clone the git repository by running the following in a local jupyter notebook (Python 3)
+```
+!git clone https://github.com/vanbui24/flowty-sagemaker 
+```
+
 ### Creating the ECR repository
-Create the ECR repository.
+We need to create an ECR to store our Docker image.
 ```
 REGION=<aws-region>
 REPOSITORY=<repository-name>
@@ -15,7 +20,7 @@ aws --region ${REGION} ecr create-repository \
 ```
 
 ### Build and push the custom Docker Image
-Build the Docker image and push to Amazon ECR.
+Using the AWS CLI, we need to log in to the newly created ECR to be able to push our Docker image
 ```
 # Modify these as required. The Docker registry endpoint can be tuned based on your current region from https://docs.aws.amazon.com/general/latest/gr/ecr.html#ecr-docker-endpoints
 
@@ -28,6 +33,7 @@ aws --region ${REGION} ecr get-login-password | docker login
 ```
 
 ### Build the image
+In the directory containing the Dockerfile, we build and push the docker image using the following CMD commands  
 ```
 docker build . -t ${IMAGE_NAME} -t ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${REPOSITORY}:${IMAGE_NAME}
 ```
@@ -37,10 +43,6 @@ docker push ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${REPOSITORY}:${IMAGE_
 ```
 
 ### Using it with Sagemaker ScriptProcessor
-Clone the git repository by running the following in a local jupyter notebook (Python 3)
-```
-!git clone https://github.com/vanbui24/flowty-sagemaker 
-```
 
 In the Sagemaker-processing folder: Open the sagemaker-processing notebook
 
