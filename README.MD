@@ -13,9 +13,8 @@ REPOSITORY=<repository-name>
 aws --region ${REGION} ecr create-repository \
     --repository-name ${REPOSITORY}
 ```
-If successful returns
 
-### Building the image
+### Build and push the custom Docker Image
 Build the Docker image and push to Amazon ECR.
 ```
 # Modify these as required. The Docker registry endpoint can be tuned based on your current region from https://docs.aws.amazon.com/general/latest/gr/ecr.html#ecr-docker-endpoints
@@ -38,22 +37,23 @@ docker push ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${REPOSITORY}:${IMAGE_
 ```
 
 ### Using it with Sagemaker ScriptProcessor
-Clone the git repository by running the following in a new notebook (Python 3)
+Clone the git repository by running the following in a local jupyter notebook (Python 3)
 ```
 !git clone https://github.com/vanbui24/flowty-sagemaker 
 ```
 
 In the Sagemaker-processing folder: Open the sagemaker-processing notebook
 
-Set the IMAGE_URI and ROLE_ARN
+Set the ecr_uri and role_arn (with permission to create and push images to AWS ECR & permission to read and write to S3 buckets )
 
 ```
-IAM Arn role in your account to be used with the SageMaker ScriptProcessor
-ROLE_ARN=<role-arn>
+#IAM Arn role in your account to be used with the SageMaker ScriptProcessor
 
-IMAGE_URI = ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${REPOSITORY}:${IMAGE_NAME}
+ecr_uri = ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${REPOSITORY}:${IMAGE_NAME}
+
+role_arn = <ROLE_ARN>
 ```
+
+In the next cell we need to set the alias, and instance_name, and specify the output_bucket
 
 Run all cells
-
-"# Sagemaker-processing" 
