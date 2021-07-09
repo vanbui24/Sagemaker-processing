@@ -6,7 +6,7 @@ This example will use Amazon SageMaker Processing to remotely run Flowty’s net
 See linkedin post: https://www.linkedin.com/pulse/using-amazon-sagemaker-processing-remotely-run-flowtys-network-/
 
 First we will build a Docker Image from a Dockerfile and push the image to AWS ECR. 
-We need the ECR image address when creating the processing container with the required packages and other dependencies inside the container to process the script. Running the Scrit
+We need the ECR image address when creating the processing container with the required packages and other dependencies inside the container to process the script.
 
 Clone the git repository by running the following in a local jupyter notebook (Python 3)
 ```
